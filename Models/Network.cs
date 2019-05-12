@@ -39,6 +39,19 @@ namespace AdalineOCRNetwork.Models {
                 throw new ArgumentException ("Wprowadzony znak ma niepoprawny rozmiar matrycy");
             }
 
+            var outputValues = new double[Neurons.Count];
+
+            for (int i = 0; i < Neurons.Count; i++) {
+                var neuron = Neurons[i];
+                for (int j = 0; j < Neurons[i].Weights.Length; j++) {
+                    outputValues[i] += neuron.Weights[j] * inputVector[j];
+                }
+            }
+
+            for (int i = 0; i < outputValues.Length; i++) {
+                Console.WriteLine ("{0}, zgodność w {1:P}", Neurons[i].Letter, outputValues[i]);
+            }
+
             VectorHelper.NormalizeVector (inputVector);
         }
 

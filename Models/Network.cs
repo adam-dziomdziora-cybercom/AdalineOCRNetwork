@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AdalineOCRNetwork.Helpers;
 
 namespace AdalineOCRNetwork.Models {
     public class Network {
@@ -31,6 +32,14 @@ namespace AdalineOCRNetwork.Models {
                 var ex = string.Format ("Nie wszystkie litery mają taki sam rozmiar");
                 throw new ArgumentException (ex);
             }
+        }
+
+        public void Process (double[] inputVector) {
+            if (letterSize != inputVector.Length) {
+                throw new ArgumentException ("Wprowadzony znak ma niepoprawny rozmiar matrycy");
+            }
+
+            VectorHelper.NormalizeVector (inputVector);
         }
 
         private bool AreAllNeuronsSameSize () {

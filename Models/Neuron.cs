@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using AdalineOCRNetwork.Helpers;
 
 namespace AdalineOCRNetwork.Models {
     public class Neuron {
@@ -11,6 +13,10 @@ namespace AdalineOCRNetwork.Models {
 
         public Neuron (string filePath) {
             Letter = Path.GetFileNameWithoutExtension (filePath);
+            Console.WriteLine(Letter);
+            Weights = LetterHelper.ReadLetterFromFile(filePath);
         }
+
+     
     }
 }

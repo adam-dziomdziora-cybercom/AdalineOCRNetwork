@@ -15,6 +15,16 @@ namespace AdalineOCRNetwork.Models {
 
         public Network (string lettersDirectory) {
             var letterFilePaths = Directory.EnumerateFiles (lettersDirectory, "*.txt").ToArray ();
+
+            foreach (var filePath in letterFilePaths) {
+                try {
+                    var neuron = new Neuron (filePath);
+                    Neurons.Add (neuron);
+                } catch (Exception ex) {
+                    Console.WriteLine (ex);
+                }
+            }
+
             if (AreAllNeuronsSameSize ()) {
                 letterSize = Neurons.FirstOrDefault ().Weights.Length;
             } else {

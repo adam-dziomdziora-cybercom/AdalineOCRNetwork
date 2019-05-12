@@ -38,6 +38,7 @@ namespace AdalineOCRNetwork.Models {
             if (letterSize != inputVector.Length) {
                 throw new ArgumentException ("Wprowadzony znak ma niepoprawny rozmiar matrycy");
             }
+            VectorHelper.NormalizeVector (inputVector);
 
             var outputValues = new double[Neurons.Count];
 
@@ -51,8 +52,6 @@ namespace AdalineOCRNetwork.Models {
             for (int i = 0; i < outputValues.Length; i++) {
                 Console.WriteLine ("{0}, zgodność w {1:P}", Neurons[i].Letter, outputValues[i]);
             }
-
-            VectorHelper.NormalizeVector (inputVector);
         }
 
         private bool AreAllNeuronsSameSize () {

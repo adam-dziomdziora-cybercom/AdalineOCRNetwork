@@ -15,6 +15,7 @@ namespace AdalineOCRNetwork.Models {
             Letter = Path.GetFileNameWithoutExtension (filePath);
             Console.WriteLine(Letter);
             Weights = LetterHelper.ReadLetterFromFile(filePath);
+            VectorHelper.NormalizeVector(Weights);
         }
 
      

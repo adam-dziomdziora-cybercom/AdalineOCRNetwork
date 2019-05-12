@@ -52,6 +52,27 @@ namespace AdalineOCRNetwork.Models {
             for (int i = 0; i < outputValues.Length; i++) {
                 Console.WriteLine ("{0}, zgodność w {1:P}", Neurons[i].Letter, outputValues[i]);
             }
+
+            var maxValue = outputValues.Max ();
+            if (maxValue > 0) {
+                var indexes = outputValues
+                    .Select ((value, index) => value == maxValue ? index : -1)
+                    .Where (i => i != -1)
+                    .ToArray ();
+
+                if (indexes.Length > 1) {
+                    foreach (var idx in indexes) {
+                        Console.Write ($"Możliwa litera: {Neurons[idx].Letter}, ");
+                    }
+                    Console.WriteLine ();
+                } else {
+                    Console.WriteLine ("Rozpoznana litera: " + Neurons[indexes.FirstOrDefault ()].Letter);
+                }
+
+            } else {
+                Console.WriteLine ("Nie rozpoznano litery");
+            }
+
         }
 
         private bool AreAllNeuronsSameSize () {

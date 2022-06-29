@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  adalineocrnetwork:
+    image: ${DOCKER_REGISTRY-}adalineocrnetwork
+    build:
+      context: .
+      dockerfile: Dockerfile
